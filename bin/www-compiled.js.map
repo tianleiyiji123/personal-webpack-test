@@ -1,0 +1,1 @@
+{"version":3,"sources":["www.js"],"names":[],"mappings":"AAAA;;;AAGA,QAAQ,oBAAR","file":"www-compiled.js","sourcesContent":["/**\r\n * Created by wanglei on 2016/8/26.\r\n */\r\nrequire(\"../express/express\");\r\n"]}
