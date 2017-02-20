@@ -13,7 +13,8 @@
     "webpack": "^1.13.2"
   },
   "scripts": {
-    "start": "node ./bin/www.js"
+    "start": "node ./bin/www.js",
+    "alerw":"node ./bin/www.js"
   },
   "devDependencies": {
     "babel-core": "^6.14.0",
