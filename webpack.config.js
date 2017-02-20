@@ -8,11 +8,17 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './test/app.js',
+    context: __dirname + "/src",
+    entry: {
+        //imports:"./imports-loader/index.js",
+        //styleImg:"./style-img/index.js"
+        styles:"./index.js"
+    },
     output: {
         //path: path.join(__dirname, 'dist'),
+        //path: "./webpack-loaders/dist",
         path: "./dist",
-        filename: 'dog.js'
+        filename: "[name].bundle.js"
     },
     //plugins: [
     //    new webpack.optimize.UglifyJsPlugin({
@@ -25,13 +31,13 @@ module.exports = {
         loaders: [
             {
                 test: /\.css$/,
-                loaders: ['style', 'css']
+                loaders: ['style-loader', 'css-loader']
             },
             {
                 test: /\.(png|jpg)$/,
                 loaders: [
-                    'file?hash=sha512&digest=hex&name=[hash].[ext]',
-                    'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                    'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+                    'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             },
             //{
@@ -43,7 +49,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 query: {
                     presets: ['es2015']
                 }
