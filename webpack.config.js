@@ -8,16 +8,17 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    context: __dirname + "/src",
+    //context: __dirname + "/webpack-loaders",
     entry: {
-        //imports:"./imports-loader/index.js",
-        //styleImg:"./style-img/index.js"
-        styles:"./index.js"
+        imports: "./webpack-loaders/imports-loader/index.js",
+        styleImg: "./webpack-loaders/style-img/index.js",
+        lessLoader: "./webpack-loaders/less-loader/index.js"
+        //styles:"./src/index.js"
     },
     output: {
         //path: path.join(__dirname, 'dist'),
-        //path: "./webpack-loaders/dist",
-        path: "./dist",
+        path: "./webpack-loaders/dist",
+        //path: "./dist",
         filename: "[name].bundle.js"
     },
     //plugins: [
@@ -34,10 +35,17 @@ module.exports = {
                 loaders: ['style-loader', 'css-loader']
             },
             {
+                test: /\.less$/,
+                loaders: ["style-loader",
+                    'css-loader',
+                    "less-loader"
+                ]
+            },
+            {
                 test: /\.(png|jpg)$/,
                 loaders: [
-                    'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-                    'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                    'file?hash=sha512&digest=hex&name=[hash].[ext]',
+                    'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             },
             //{
@@ -54,6 +62,12 @@ module.exports = {
                     presets: ['es2015']
                 }
             }
-        ]
+        ],
+        resolve: {
+            extensions: ['', '.js', '.jsx', '.css'],
+            modulesDirectories: [
+                'style-img'
+            ]
+        }
     }
 };

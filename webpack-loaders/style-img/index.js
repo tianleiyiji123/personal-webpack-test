@@ -1,7 +1,7 @@
 /**
  * Created by wanglei on 2016/8/23.
  */
-import styles from 'webpack-loaders/style-img/style.css';
+require("./style.css");
 console.log(123);
 export default class SwipeLeft {
     /**
